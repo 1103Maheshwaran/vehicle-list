@@ -1,16 +1,3 @@
 # vehiclelist
 
-Color coding vehicle list based on fuel efficency
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A Flutter app displaying a vehicle list, color-coded by fuel efficiency and age: green for vehicles ≥15 km/l and ≤5 years old (fuel-efficient, low-pollutant), amber for ≥15 km/l and >5 years old (fuel-efficient, moderate-pollutant), and red for all others.
