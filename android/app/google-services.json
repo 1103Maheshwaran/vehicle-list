@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311009369981",
+    "project_id": "vehiclelist-zylu",
+    "storage_bucket": "vehiclelist-zylu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311009369981:android:e7f557f08eaf7346a1f614",
+        "android_client_info": {
+          "package_name": "co.zylu.vehiclelist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4mnEcxYDQcBTDTJ-KT8SWAUk4-xovtcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
