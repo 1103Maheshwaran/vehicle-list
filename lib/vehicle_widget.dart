@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Vehicle extends StatefulWidget {
-  const Vehicle({super.key});
+class VehicleWidget extends StatefulWidget {
+  const VehicleWidget({super.key});
 
   @override
-  State<Vehicle> createState() => _VehicleState();
+  State<VehicleWidget> createState() => _VehicleState();
 }
 
-class _VehicleState extends State<Vehicle> {
+class _VehicleState extends State<VehicleWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Vehicle Lists'),
-        backgroundColor: Colors.blue,
-      ),
-      body: Padding(
+    return Padding(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Container(
           width: double.infinity,
@@ -50,7 +45,7 @@ class _VehicleState extends State<Vehicle> {
             ),
           ),
         ),
-      ),
-    );
+        );
+ 
   }
 }
