@@ -38,6 +38,7 @@ dependencies:
   firebase_auth: ^5.4.2
   cloud_firestore: ^5.6.3
   firebase_analytics: ^11.4.2
+  random_string: ^2.3.1
 
 dev_dependencies:
   flutter_test:

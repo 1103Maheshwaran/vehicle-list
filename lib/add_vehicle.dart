@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
+import 'package:vehiclelist/firestore.dart';
 
 class AddVehicle extends StatelessWidget {
   const AddVehicle({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FirestoreDatasource database = FirestoreDatasource();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController ageController = TextEditingController();
+    TextEditingController mileageController = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Input Data'),
@@ -13,10 +19,11 @@ class AddVehicle extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextField(
-                decoration: InputDecoration(
+                controller: nameController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Enter vehicle name',
                 ),
@@ -25,6 +32,7 @@ class AddVehicle extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                controller: ageController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Enter vehicle age',
@@ -34,17 +42,30 @@ class AddVehicle extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                controller: mileageController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Enter milage in km/hr',
+                  labelText: 'Enter mileage in km/liter',
                 ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed:() {},
-                child: Text('Submit'),),
+                ElevatedButton(
+                  onPressed: () async {
+                    String id = randomAlphaNumeric(10);
+                    Map<String, dynamic> vehicleInfoMap = {
+                      "Name": nameController.text,
+                      "Age": ageController.text,
+                      "Mileage": mileageController.text
+                    };
+                    await database
+                        .addVehicleDetails(vehicleInfoMap, id)
+                        .then((value) => Navigator.pop(context));
+                  },
+                  child: Text('Submit'),
+                ),
               ],
             )
           ],
