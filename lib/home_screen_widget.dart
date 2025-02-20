@@ -44,13 +44,17 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Vehicle List'),
+        backgroundColor: Colors.blue,
+      ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => AddVehicle()));
         },
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         child: Icon(
           Icons.add,
           size: 20,

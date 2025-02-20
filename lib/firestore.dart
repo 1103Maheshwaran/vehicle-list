@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class FirestoreDatasource {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -13,8 +12,3 @@ class FirestoreDatasource {
     return _firestore.collection('Vehicle').snapshots();
   }
 }
-/*
-Future<bool> AddVehicle(String vehicle, String mileage, int age) async{
-  await _firestore.collection('vehicle').set({})
-}
-*/

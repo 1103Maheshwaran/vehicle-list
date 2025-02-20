@@ -10,6 +10,15 @@ class VehicleWidget extends StatefulWidget {
 }
 
 class _VehicleState extends State<VehicleWidget> {
+  Color colourCode(String age, String mileage) {
+    if (int.parse(mileage) >= 15 && int.parse(age) <= 5) {
+      return Colors.green;
+    } else if (int.parse(mileage) >= 15 && int.parse(age) > 5) {
+      return Colors.amber;
+    }
+    return Colors.red;
+  }
+
   @override
   Widget build(BuildContext context) {
     print("Name:  + $widget.documentSnapshot['Name']");
@@ -20,7 +29,8 @@ class _VehicleState extends State<VehicleWidget> {
         height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: colourCode("${widget.documentSnapshot['Age']}",
+              "${widget.documentSnapshot['Mileage']}"),
           boxShadow: [
             BoxShadow(
                 color: Colors.grey,
@@ -36,8 +46,11 @@ class _VehicleState extends State<VehicleWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              Text("Name:   ${widget.documentSnapshot['Name']}",
-                  style: TextStyle(color: Colors.black, fontSize: 15)),
+              Text("${widget.documentSnapshot['Name']}",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               Text("Mileage: ${widget.documentSnapshot['Mileage']}",
                   style: TextStyle(color: Colors.black, fontSize: 15)),
