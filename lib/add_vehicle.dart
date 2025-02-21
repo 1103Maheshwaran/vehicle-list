@@ -58,7 +58,8 @@ class AddVehicle extends StatelessWidget {
                     Map<String, dynamic> vehicleInfoMap = {
                       "Name": nameController.text,
                       "Age": ageController.text,
-                      "Mileage": mileageController.text
+                      "Mileage": mileageController.text,
+                      "id": randomAlphaNumeric(10)
                     };
                     await database
                         .addVehicleDetails(vehicleInfoMap, id)

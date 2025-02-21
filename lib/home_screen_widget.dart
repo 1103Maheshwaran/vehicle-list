@@ -16,7 +16,6 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   getOnLoad() async {
     vehicleStream = await FirestoreDatasource().getVehicleDetails();
     setState(() {});
-    print("getOnLoad");
   }
 
   @override

@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vehiclelist/firestore.dart';
 
-class VehicleWidget extends StatefulWidget {
+class VehicleWidget extends StatelessWidget {
   final DocumentSnapshot documentSnapshot;
   const VehicleWidget(this.documentSnapshot, {super.key});
 
-  @override
-  State<VehicleWidget> createState() => _VehicleState();
-}
-
-class _VehicleState extends State<VehicleWidget> {
   Color colourCode(String age, String mileage) {
     if (int.parse(mileage) >= 15 && int.parse(age) <= 5) {
       return Colors.green;
@@ -21,7 +17,11 @@ class _VehicleState extends State<VehicleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("Name:  + $widget.documentSnapshot['Name']");
+    final name = documentSnapshot['Name'] ?? '';
+    final age = documentSnapshot['Age'] ?? '';
+    final mileage = documentSnapshot['Mileage'] ?? '';
+    final id = documentSnapshot.id;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Container(
@@ -29,8 +29,7 @@ class _VehicleState extends State<VehicleWidget> {
         height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: colourCode("${widget.documentSnapshot['Age']}",
-              "${widget.documentSnapshot['Mileage']}"),
+          color: colourCode("$age", "$mileage"),
           boxShadow: [
             BoxShadow(
                 color: Colors.grey,
@@ -44,19 +43,38 @@ class _VehicleState extends State<VehicleWidget> {
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text("${widget.documentSnapshot['Name']}",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Name: $name",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)),
+                  GestureDetector(
+                      onTap: () async {
+                        await FirestoreDatasource().deleteVehicleDetails(id);
+                      },
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.black,
+                      ))
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text("Mileage: $mileage",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
-              Text("Mileage: ${widget.documentSnapshot['Mileage']}",
-                  style: TextStyle(color: Colors.black, fontSize: 15)),
-              SizedBox(height: 10),
-              Text("Age: ${widget.documentSnapshot['Age']}",
-                  style: TextStyle(color: Colors.black, fontSize: 15))
+              const SizedBox(height: 10),
+              Text("Age: $age",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold))
             ],
           ),
         ),
