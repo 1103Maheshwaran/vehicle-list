@@ -7,7 +7,14 @@ class VehicleWidget extends StatelessWidget {
   const VehicleWidget(this.documentSnapshot, {super.key});
 
   Color colourCode(String age, String mileage) {
-    if (int.parse(mileage) >= 15 && int.parse(age) <= 5) {
+    double? parsedMileage = double.tryParse(mileage);
+    double? parsedAge = double.tryParse(age);
+
+    // Handle cases where parsing fails (e.g., non-numeric data)
+    if (parsedMileage == null || parsedAge == null) {
+      return Colors.red; // Or some other default color
+    }
+    if (parsedMileage >= 15 && parsedAge <= 5) {
       return Colors.green;
     } else if (int.parse(mileage) >= 15 && int.parse(age) > 5) {
       return Colors.amber;
